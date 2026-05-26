@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inteligência de Mercado — Forno Combinado Elétrico | Brasil 2026</title>
+  <style>
+    :root {
+      --primary: #1a2e4a;
+      --accent: #e8501a;
+      --accent2: #2e7dc8;
+      --light: #f4f6f9;
+      --border: #d8dde6;
+      --text: #222b3a;
+      --muted: #6b7a92;
+      --white: #ffffff;
+      --success: #1d8c5e;
+      --warning: #c47e0a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--light); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+    /* COVER */
+    .cover { background: linear-gradient(135deg, #1a2e4a 0%, #0f1e33 60%, #1a3a5c 100%); color: var(--white); padding: 60px 48px 50px; position: relative; overflow: hidden; }
+    .cover::after { content: ''; position: absolute; top: -40px; right: -40px; width: 320px; height: 320px; border-radius: 50%; background: rgba(232,80,26,0.12); pointer-events: none; }
+    .cover-tag { display: inline-block; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 14px; border-radius: 2px; margin-bottom: 20px; }
+    .cover h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 10px; max-width: 680px; }
+    .cover h1 span { color: #e8a57a; }
+    .cover-sub { font-size: 1.05rem; color: #a8bcd4; max-width: 560px; margin-bottom: 32px; }
+    .cover-meta { display: flex; gap: 28px; flex-wrap: wrap; font-size: 0.82rem; color: #7fa0c4; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 20px; }
+    .cover-meta strong { color: #c8dff0; }
+
+    /* NAV */
+    .toc { background: var(--white); border-bottom: 2px solid var(--border); padding: 0 48px; display: flex; gap: 4px; overflow-x: auto; position: sticky; top: 0; z-index: 100; }
+    .toc a { display: block; padding: 14px 16px; font-size: 0.82rem; font-weight: 600; color: var(--muted); text-decoration: none; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+    .toc a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* SECTIONS */
+    .section { background: var(--white); border-radius: 8px; border: 1px solid var(--border); margin: 28px auto; max-width: 1100px; overflow: hidden; }
+    .section-header { background: var(--primary); color: #fff; padding: 18px 32px; display: flex; align-items: center; gap: 12px; }
+    .section-header .icon { font-size: 1.4rem; opacity: 0.85; }
+    .section-header h2 { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.3px; }
+    .section-header .badge { margin-left: auto; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.5px; }
+    .section-body { padding: 28px 32px; }
+
+    /* KPI */
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .kpi-card { background: var(--light); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; text-align: center; }
+    .kpi-card .kpi-val { font-size: 1.8rem; font-weight: 800; color: var(--accent); line-height: 1.1; }
+    .kpi-card .kpi-label { font-size: 0.78rem; color: var(--muted); margin-top: 4px; font-weight: 500; }
+    .kpi-card .kpi-sub { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+    p { margin-bottom: 12px; }
+    p:last-child { margin-bottom: 0; }
+    .highlight-box { background: #eef6ff; border-left: 4px solid var(--accent2); padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 16px 0; font-size: 0.9rem; }
+    .warning-box { background: #fff8ee; border-left: 4px solid var(--warning); padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 16px 0; font-size: 0.9rem; }
+
+    /* COMPETITOR CARDS */
+    .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+    .comp-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .comp-header { padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; }
+    .comp-header h3 { font-size: 1rem; font-weight: 700; }
+    .comp-header .origin { font-size: 0.75rem; color: var(--muted); background: var(--light); padding: 2px 8px; border-radius: 12px; border: 1px solid var(--border); }
+    .comp-body { padding: 14px 18px; font-size: 0.88rem; border-top: 1px solid var(--border); }
+    .comp-body ul { padding-left: 18px; margin-bottom: 10px; }
+    .comp-body ul li { margin-bottom: 4px; }
+    .comp-body .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .tag { background: var(--light); border: 1px solid var(--border); border-radius: 12px; font-size: 0.72rem; padding: 2px 9px; color: var(--muted); font-weight: 600; }
+    .tag.green { background:#eafaf3; border-color:#aadfc8; color:#1d8c5e; }
+    .tag.blue  { background:#eaf3ff; border-color:#aacef0; color:#1a5fa0; }
+    .tag.red   { background:#fff0ec; border-color:#f0b8a0; color:#b84020; }
+    .tag.purple{ background:#f5eeff; border-color:#c9a8f0; color:#6020b0; }
+
+    .leader-badge { display: inline-block; background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle; }
+    .national-badge { display: inline-block; background: var(--success); color: #fff; font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle; }
+
+    /* PRODUCT MINI CARDS inside competitor card */
+    .prod-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0; }
+    .prod-mini { background: var(--light); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; }
+    .prod-mini .pm-model { font-size: 0.82rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .prod-mini .pm-specs { font-size: 0.77rem; color: var(--muted); line-height: 1.5; }
+    .prod-mini .pm-specs span { display: block; }
+    .prod-mini .pm-price { font-size: 0.8rem; font-weight: 700; color: var(--success); margin-top: 6px; }
+
+    /* BLIPS SPECIAL CARD */
+    .blips-card { border: 2px solid #e8501a; border-radius: 10px; overflow: hidden; background: var(--white); }
+    .blips-header { background: linear-gradient(135deg, #1a2e4a, #2a4a6a); color: #fff; padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
+    .blips-header .blips-logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -1px; color: #e8a57a; }
+    .blips-header .blips-sub { font-size: 0.8rem; color: #a8c4de; }
+    .blips-header .our-badge { margin-left: auto; background: var(--accent); color: #fff; font-size: 0.72rem; font-weight: 700; padding: 4px 12px; border-radius: 12px; }
+    .blips-body { padding: 18px 20px; }
+    .blips-products { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .blips-product { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .blips-product-header { background: var(--primary); color: #fff; padding: 10px 14px; font-size: 0.85rem; font-weight: 700; }
+    .blips-product-body { padding: 12px 14px; font-size: 0.82rem; }
+    .blips-spec-row { display: flex; justify-content: space-between; padding: 3px 0; border-bottom: 1px solid #f0f0f0; }
+    .blips-spec-row:last-child { border-bottom: none; }
+    .blips-spec-row .spec-key { color: var(--muted); font-size: 0.78rem; }
+    .blips-spec-row .spec-val { font-weight: 600; color: var(--text); font-size: 0.78rem; }
+    .price-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+    .price-box { border-radius: 6px; padding: 8px 10px; }
+    .price-box.fob { background: #deeeff; border: 1px solid #aacef0; }
+    .price-box.venda { background: #e4f9ef; border: 1px solid #aadfc8; }
+    .price-box.margem { background: #fff3dc; border: 1px solid #f0d898; }
+    .price-box.neuro { background: #f0ecff; border: 1px solid #c8b8f0; }
+    .price-box .pb-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.7; margin-bottom: 2px; }
+    .price-box .pb-val { font-size: 0.9rem; font-weight: 800; }
+    .price-box.fob .pb-val { color: #1a5fa0; }
+    .price-box.venda .pb-val { color: #1d8c5e; }
+    .price-box.margem .pb-val { color: #9a6000; }
+    .price-box.neuro .pb-val { color: #6020b0; }
+    .price-box .pb-sub { font-size: 0.7rem; opacity: 0.65; margin-top: 2px; }
+    .blips-note { font-size: 0.78rem; color: var(--muted); margin-top: 10px; padding: 8px 10px; background: #fffbf0; border: 1px solid #f0e8c0; border-radius: 6px; }
+
+    /* TABLES */
+    .prod-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 16px; }
+    .prod-table thead tr { background: var(--primary); color: #fff; }
+    .prod-table thead th { padding: 10px 12px; text-align: left; font-weight: 600; font-size: 0.78rem; }
+    .prod-table tbody tr:nth-child(even) { background: #f9fafc; }
+    .prod-table tbody td { padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; font-size: 0.82rem; }
+    .prod-table tfoot td { font-size: 0.76rem; color: var(--muted); padding: 8px 12px; border-top: 2px solid var(--border); font-style: italic; }
+    .prod-table tbody tr.brand-row-a { background: #f4f8ff; }
+    .prod-table tbody tr.brand-row-b { background: #f9fafc; }
+    .price-cell { font-weight: 700; color: var(--success); white-space: nowrap; }
+    .volt-cell { font-family: monospace; font-size: 0.78rem; background: #f0f4ff; border: 1px solid #d0daff; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+    .volt-warn { font-family: monospace; font-size: 0.78rem; background: #fff4ec; border: 1px solid #f0cca0; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+
+    /* CERTIFICATION */
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+    .cert-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .cert-card-header { padding: 12px 16px; font-weight: 700; font-size: 0.92rem; color: var(--white); }
+    .cert-card-body { padding: 14px 16px; font-size: 0.85rem; }
+    .cert-card-body ul { padding-left: 16px; }
+    .cert-card-body ul li { margin-bottom: 5px; }
+
+    /* INMETRO TABLE */
+    .inm-table { width: 100%; border-collapse: collapse; font-size: 0.84rem; margin-top: 12px; }
+    .inm-table thead tr { background: #1a2e4a; color: #fff; }
+    .inm-table thead th { padding: 10px 14px; text-align: left; }
+    .inm-table tbody tr:nth-child(even) { background: #f9fafc; }
+    .inm-table tbody td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+    .status-ok { color: var(--success); font-weight: 700; }
+    .status-nc { color: var(--muted); }
+
+    /* FEATURES */
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .feature-card { background: var(--light); border: 1px solid var(--border); border-radius: 8px; padding: 18px; }
+    .feature-card .feat-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .feature-card h4 { font-size: 0.92rem; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+    .feature-card p { font-size: 0.83rem; color: var(--muted); margin: 0; }
+    .importance-bar { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+    .importance-bar .bar-track { flex: 1; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .importance-bar .bar-fill { height: 100%; background: var(--accent); border-radius: 3px; }
+    .importance-bar .bar-label { font-size: 0.72rem; color: var(--muted); font-weight: 600; width: 48px; text-align: right; }
+
+    /* SEGMENTS */
+    .segment-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .segment-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
+    .segment-card .seg-icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+    .segment-card h4 { font-size: 0.88rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+    .segment-card p { font-size: 0.79rem; color: var(--muted); margin: 0; }
+
+    /* SOURCES */
+    .sources { background: #f0f3f7; border-top: 2px solid var(--border); padding: 22px 32px; font-size: 0.8rem; color: var(--muted); }
+    .sources h3 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 10px; }
+    .sources ul { padding-left: 0; list-style: none; }
+    .sources ul li { margin-bottom: 5px; }
+    .sources ul li::before { content: '↗ '; color: var(--accent); }
+    .sources a { color: var(--accent2); text-decoration: none; }
+    .sources a:hover { text-decoration: underline; }
+
+    .doc-footer { background: var(--primary); color: #6b8baa; font-size: 0.78rem; padding: 20px 48px; text-align: center; }
+    .doc-footer strong { color: #a8c4de; }
+    .divider { margin: 24px 0; border: none; border-top: 1px solid var(--border); }
+    h3.sub-title { font-size: 0.95rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; margin-top: 20px; padding-bottom: 6px; border-bottom: 2px solid var(--border); }
+    h3.sub-title:first-child { margin-top: 0; }
+
+    @media (max-width: 700px) {
+      .blips-products, .prod-mini-grid { grid-template-columns: 1fr; }
+      .price-boxes { grid-template-columns: 1fr 1fr; }
+      .cover h1 { font-size: 1.6rem; }
+      .toc { padding: 0 16px; }
+      .section-body { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Inteligência de Mercado</div>
+  <h1>Forno Combinado <span>Elétrico</span><br>Profissional no Brasil</h1>
+  <p class="cover-sub">Análise abrangente de mercado, concorrência, perfil de clientes, certificações regulatórias e características técnicas essenciais para comercialização no Brasil.</p>
+  <div class="cover-meta">
+    <div><strong>Data:</strong> Maio / 2026</div>
+    <div><strong>Segmento:</strong> Food Service — Equipamentos Profissionais</div>
+    <div><strong>Escopo:</strong> Mercado Brasileiro</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="toc">
+  <a href="#mercado">📊 Mercado</a>
+  <a href="#concorrencia">🏢 Concorrência</a>
+  <a href="#produtos">📦 Comparativo</a>
+  <a href="#clientes">👥 Clientes</a>
+  <a href="#campo">🔍 Pesquisa de Campo</a>
+  <a href="#certificacoes">📋 Certificações</a>
+  <a href="#features">⚙️ Características</a>
+  <a href="#conclusoes">🎯 Conclusões</a>
+  <a href="#fontes">🔗 Fontes</a>
+</nav>
+
+<!-- ===== 1. MERCADO ===== -->
+<div class="section" id="mercado" style="margin-top:32px">
+  <div class="section-header">
+    <span class="icon">📊</span>
+    <h2>1. Contexto e Dimensão de Mercado</h2>
+    <span class="badge">Global + Brasil</span>
+  </div>
+  <div class="section-body">
+    <h3 class="sub-title">Mercado Global de Fornos Combinados</h3>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-val">USD 2,7 bi</div><div class="kpi-label">Tamanho do mercado global</div><div class="kpi-sub">Estimativa 2024 (Grand View Research)</div></div>
+      <div class="kpi-card"><div class="kpi-val">~9,1%</div><div class="kpi-label">CAGR projetado</div><div class="kpi-sub">2025–2030</div></div>
+      <div class="kpi-card"><div class="kpi-val">USD 4,5 bi</div><div class="kpi-label">Projeção global 2030</div><div class="kpi-sub">Crescimento sustentado</div></div>
+      <div class="kpi-card"><div class="kpi-val">USD 7,2 bi</div><div class="kpi-label">Projeção global 2035</div><div class="kpi-sub">CAGR ~10,7% (FMI)</div></div>
+    </div>
+    <p>O mercado global de fornos combinados profissionais experimenta crescimento acelerado impulsionado pela expansão do setor de food service, modernização das cozinhas profissionais, demanda por eficiência energética e adoção de tecnologia de automação e IoT. A tendência de substituição de múltiplos equipamentos por uma solução única e versátil também sustenta a expansão.</p>
+    <div class="highlight-box"><strong>🌍 Drivers globais de crescimento:</strong> proliferação de dark kitchens e delivery, exigências de higiene e rastreabilidade HACCP, redução de custos operacionais com automação, e sustentabilidade (menor consumo de água, energia e óleo).</div>
+    <hr class="divider">
+    <h3 class="sub-title">Mercado Brasileiro de Food Service</h3>
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-val">R$ 231,9 bi</div><div class="kpi-label">Mercado de food service BR (2025)</div><div class="kpi-sub">Potencial de consumo anual estimado</div></div>
+      <div class="kpi-card"><div class="kpi-val">+4,9%</div><div class="kpi-label">Crescimento anual projetado</div><div class="kpi-sub">Em relação a 2024</div></div>
+      <div class="kpi-card"><div class="kpi-val">R$ 400 mi+</div><div class="kpi-label">Faturamento do líder nacional (Prática)</div><div class="kpi-sub">2024 — projeção R$480 mi em 2025</div></div>
+      <div class="kpi-card"><div class="kpi-val">+20%</div><div class="kpi-label">Meta de crescimento Prática 2025</div><div class="kpi-sub">Expansão internacional e lançamentos</div></div>
+    </div>
+    <p>O Brasil representa um dos mercados mais dinâmicos da América Latina para equipamentos de cozinha profissional. O forno combinado é considerado o equipamento de maior ROI em cozinhas profissionais — capaz de substituir até <strong>90% dos equipamentos tradicionais</strong> por uma única solução versátil, compacta e eficiente.</p>
+    <div class="highlight-box">
+      <strong>📈 Tendências 2025–2026 no Brasil:</strong><br>
+      • Digitalização das cozinhas profissionais (IoT, conectividade em nuvem)<br>
+      • Alta demanda por eficiência energética e redução de desperdícios<br>
+      • Crescimento expressivo de redes de alimentação fora do lar<br>
+      • Expansão de dark kitchens e operações de delivery<br>
+      • Maior rigor regulatório em higiene (ANVISA/HACCP)<br>
+      • Crescimento de refeitórios corporativos e escolares
+    </div>
+  </div>
+</div>
+
+<!-- ===== 2. CONCORRÊNCIA ===== -->
+<div class="section" id="concorrencia">
+  <div class="section-header">
+    <span class="icon">🏢</span>
+    <h2>2. Panorama Competitivo — Principais Players</h2>
+    <span class="badge">7 Marcas Analisadas</span>
+  </div>
+  <div class="section-body">
+    <p>O mercado brasileiro de fornos combinados é disputado entre marcas globais de alta tecnologia, players nacionais de peso e soluções de custo competitivo. A seguir, o mapeamento completo dos concorrentes com presença ativa no Brasil:</p>
+
+    <!-- BLIPS SPECIAL CARD -->
+    <h3 class="sub-title" style="margin-top:20px">Nossa Solução — Blips</h3>
+
+    <div class="blips-card">
+      <div class="blips-header">
+        <div>
+          <div class="blips-logo">Blips</div>
+          <div class="blips-sub">🇨🇳 Fabricado na China (Importação Direta) · Alta Performance · Custo Competitivo</div>
+        </div>
+        <div class="our-badge">NOSSA SOLUÇÃO</div>
+      </div>
+      <div class="blips-body">
+        <p style="font-size:0.88rem; margin-bottom:16px; color:var(--muted)">Forno combinado elétrico de alta performance com tela touch 10.1", sistema de limpeza automática em 3 níveis, mais de 1.000 receitas programáveis e câmara em aço inox SUS304 sem cantos vivos. Estrutura robusta, tecnologia atual e posicionamento de preço competitivo no segmento médio.</p>
+
+        <div class="blips-products">
+
+          <!-- 6 GN -->
+          <div class="blips-product">
+            <div class="blips-product-header">🔥 Forno Combinado Profissional Vuze C6</div>
+            <div class="blips-product-body">
+              <div class="blips-spec-row"><span class="spec-key">Capacidade</span><span class="spec-val">6 níveis GN 1/1</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Tela</span><span class="spec-val">Touch 10.1" multitoque</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Potência</span><span class="spec-val">18 kW (caldeira + aquecimento)</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Voltagem</span><span class="spec-val">380–400V / 3φ / 60Hz</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Ventiladores</span><span class="spec-val">30–2.500 rpm</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Estrutura</span><span class="spec-val">Aço inox SUS304 s/ cantos vivos</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Limpeza auto</span><span class="spec-val">3 níveis (leve / médio / pesado)</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Receitas</span><span class="spec-val">Mais de 1.000 programáveis</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Funções</span><span class="spec-val">Vapor · Convecção · Combinado · Fermentação · Regeneração</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Segurança</span><span class="spec-val">Vidro duplo · Abertura 2 estágios</span></div>
+              <div class="price-boxes">
+                <div class="price-box fob"><div class="pb-label">Custo FOB</div><div class="pb-val">US$ 2.300</div><div class="pb-sub">+ impostos = R$ 20.700</div></div>
+                <div class="price-box venda"><div class="pb-label">Preço de Venda</div><div class="pb-val">R$ 47.500</div></div>
+                <div class="price-box margem"><div class="pb-label">Margem CMV</div><div class="pb-val">45%</div></div>
+                <div class="price-box neuro"><div class="pb-label">Neuronizável</div><div class="pb-val">Sim</div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10 GN -->
+          <div class="blips-product">
+            <div class="blips-product-header">🔥 Forno Combinado Profissional Vuze C10</div>
+            <div class="blips-product-body">
+              <div class="blips-spec-row"><span class="spec-key">Capacidade</span><span class="spec-val">10 níveis GN 1/1</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Tela</span><span class="spec-val">Touch 10.1" multitoque</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Potência</span><span class="spec-val">18 kW (caldeira + aquecimento)</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Voltagem</span><span class="spec-val">380–400V / 3φ / 60Hz</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Ventiladores</span><span class="spec-val">30–2.500 rpm</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Estrutura</span><span class="spec-val">Aço inox SUS304 s/ cantos vivos</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Limpeza auto</span><span class="spec-val">3 níveis (leve / médio / pesado)</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Receitas</span><span class="spec-val">Mais de 1.000 programáveis</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Funções</span><span class="spec-val">Vapor · Convecção · Combinado · Fermentação · Regeneração</span></div>
+              <div class="blips-spec-row"><span class="spec-key">Segurança</span><span class="spec-val">Vidro duplo · Abertura 2 estágios</span></div>
+              <div class="price-boxes">
+                <div class="price-box fob"><div class="pb-label">Custo FOB</div><div class="pb-val">US$ 2.900</div><div class="pb-sub">+ impostos = R$ 26.100</div></div>
+                <div class="price-box venda"><div class="pb-label">Preço de Venda</div><div class="pb-val">R$ 58.616</div></div>
+                <div class="price-box margem"><div class="pb-label">Margem CMV</div><div class="pb-val">45%</div></div>
+                <div class="price-box neuro"><div class="pb-label">Neuronizável</div><div class="pb-val">Sim</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /blips-products -->
+
+
+      </div>
+    </div><!-- /blips-card -->
+
+    <h3 class="sub-title" style="margin-top:32px">Concorrentes</h3>
+
+    <div class="comp-grid" style="margin-top:12px">
+
+      <!-- RATIONAL -->
+      <div class="comp-card">
+        <div class="comp-header" style="background:#f0f4fa">
+          <h3>RATIONAL AG <span class="leader-badge">LÍDER GLOBAL</span></h3>
+          <span class="origin">🇩🇪 Alemanha</span>
+        </div>
+        <div class="comp-body">
+          <p style="margin-bottom:10px">Pioneira mundial em fornos combinados. Fundada em 1973, faturamento de <strong>€1 bilhão</strong> (2023). Mais de 1 milhão de sistemas instalados globalmente. Escritório e suporte técnico direto no Brasil.</p>
+          <div class="prod-mini-grid">
+            <div class="prod-mini">
+              <div class="pm-model">iCombi Pro 6-1/1</div>
+              <div class="pm-specs">
+                <span>6 × GN 1/1</span>
+                <span>220V trifásico</span>
+                <span>40–80 ref./dia</span>
+              </div>
+              <div class="pm-price"><a href="https://acmuller.com.br/forno-combinado-eletrico-icombi-pro-para-6-gns-1-1-trifasico-380-volts-rational.html" target="_blank" style="color:var(--success);text-decoration:none">R$ 63.980 ↗</a></div>
+            </div>
+            <div class="prod-mini">
+              <div class="pm-model">iCombi Pro 10-1/1</div>
+              <div class="pm-specs">
+                <span>10 × GN 1/1 · 18,9 kW</span>
+                <span>220V trifásico</span>
+                <span>80–150 ref./dia</span>
+              </div>
+              <div class="pm-price"><a href="https://acmuller.com.br/forno-combinado-eletrico-icombi-pro-para-10-gns-1-1-trifasico-380-volts-rational.html" target="_blank" style="color:var(--success);text-decoration:none">R$ 89.592 ↗</a></div>
+            </div>
+          </div>
+          <ul>
+            <li>IA culinária adaptativa (iCookingSuite)</li>
+            <li>Higienização automática iCareSystem</li>
+            <li>Conectividade ConnectedCooking (nuvem)</li>
+            <li>Sonda de temperatura de núcleo inclusa</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag green">IA Culinária</span>
+            <span class="tag blue">ConnectedCooking</span>
+            <span class="tag red">Premium</span>
+            <span class="tag">220V · 400V</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRÁTICA -->
+      <div class="comp-card">
+        <div class="comp-header" style="background:#eafaf3">
+          <h3>Prática Produtos S/A <span class="national-badge">LÍDER NACIONAL</span></h3>
+          <span class="origin">🇧🇷 Pouso Alegre/MG</span>
+        </div>
+        <div class="comp-body">
+          <p style="margin-bottom:10px">Maior fabricante nacional de fornos combinados. Fatura <strong>R$ 400 mi</strong> (2024), presente em +50 países. Fundada em 1991. Rede de concessionárias em 9 cidades no Brasil.</p>
+          <div class="prod-mini-grid">
+            <div class="prod-mini">
+              <div class="pm-model">C-MAX EVO 6</div>
+              <div class="pm-specs">
+                <span>6 × GN 1/1</span>
+                <span>220V mono · tri · 380V · 440V tri</span>
+                <span>30°C a 300°C</span>
+              </div>
+              <div class="pm-price"><a href="https://www.brustolinequipamentos.com.br/refrigeracao-comercial/maquina-de-gelo/forno-combinado-pratica-6-gn-c-max-6-evo" target="_blank" style="color:var(--success);text-decoration:none">R$ 36.050 ↗</a></div>
+            </div>
+            <div class="prod-mini">
+              <div class="pm-model">TSi10</div>
+              <div class="pm-specs">
+                <span>10 × GN 1/1</span>
+                <span>220V trifásico</span>
+                <span>Cocção 24h autônoma</span>
+              </div>
+              <div class="pm-price"><a href="https://www.elitecook.com.br/produtos/forno-combinado-pratica-tsi10-iok-coccao-inteligente/" target="_blank" style="color:var(--success);text-decoration:none">R$ 73.836 ↗</a></div>
+            </div>
+          </div>
+          <ul>
+            <li>IOK (Internet of Kitchen) — conectividade própria</li>
+            <li>Higienização automática com detecção de sujidade</li>
+            <li>Cocção noturna programável (TSi)</li>
+            <li>Sonda de núcleo e controle 0–100% umidade</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag green">Fabricação Nacional</span>
+            <span class="tag blue">IOK</span>
+            <span class="tag">220V / 380V</span>
+            <span class="tag">Médio-Alto</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- UNOX -->
+      <div class="comp-card">
+        <div class="comp-header" style="background:#f0f4fa">
+          <h3>UNOX S.p.A.</h3>
+          <span class="origin">🇮🇹 Itália</span>
+        </div>
+        <div class="comp-body">
+          <p style="margin-bottom:10px">Fabricante italiano com escritório próprio em São Paulo. Referência em IA e inovação tecnológica. Controle por voz "HEY.Unox", reconhecimento de alimentos via câmera e certificação ENERGY STAR®.</p>
+          <div class="prod-mini-grid">
+            <div class="prod-mini">
+              <div class="pm-model">CHEFTOP-X™ 6GN</div>
+              <div class="pm-specs">
+                <span>6 × GN 1/1</span>
+                <span>220V mono · tri · 380V tri</span>
+                <span>Digital.ID™ OS</span>
+              </div>
+              <div class="pm-price"><a href="https://duecozinhas.com.br/site/produto/forno-combinado-unox-cheftop-x-06-gns/" target="_blank" style="color:var(--success);text-decoration:none">R$ 61.990 ↗</a></div>
+            </div>
+            <div class="prod-mini">
+              <div class="pm-model">CHEFTOP-X™ 10GN</div>
+              <div class="pm-specs">
+                <span>10 × GN 1/1</span>
+                <span>220V trifásico</span>
+                <span>ENERGY STAR®</span>
+              </div>
+              <div class="pm-price"><a href="https://duecozinhas.com.br/site/produto/forno-combinado-unox-cheftop-x-10gns/" target="_blank" style="color:var(--success);text-decoration:none">R$ 89.950 ↗</a></div>
+            </div>
+          </div>
+          <ul>
+            <li>Controle por voz integrado (microfone interno)</li>
+            <li>OPTIC.Cooking — câmera IA reconhece alimentos</li>
+            <li>Lavagem automática PRESSURE.Klean com recirculação</li>
+            <li>App Digital.ID™ para controle remoto</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag green">ENERGY STAR®</span>
+            <span class="tag blue">Controle por Voz</span>
+            <span class="tag red">Premium</span>
+            <span class="tag">220V / 380V</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- WICTORY -->
+      <div class="comp-card">
+        <div class="comp-header" style="background:#eafaf3">
+          <h3>Wictory</h3>
+          <span class="origin">🇧🇷 Brasil</span>
+        </div>
+        <div class="comp-body">
+          <p style="margin-bottom:10px">Fabricante nacional com portfólio abrangente de fornos combinados touch screen e programáveis. Destaca-se pelo custo-benefício competitivo e suporte técnico com instalação e treinamento incluídos.</p>
+          <div class="prod-mini-grid">
+            <div class="prod-mini">
+              <div class="pm-model">WCTS-05 Touch</div>
+              <div class="pm-specs">
+                <span>5 × GN 1/1</span>
+                <span>220V trifásico</span>
+                <span>~13 kW · 30–270°C</span>
+              </div>
+              <div class="pm-price"><a href="https://www.varimaq.com.br/coccao/fornoscombinado/forno-combinado-touch-screen-cavalete-e-gns-wcts-05e-wictory" target="_blank" style="color:var(--success);text-decoration:none">R$ 35.557 ↗</a></div>
+            </div>
+            <div class="prod-mini">
+              <div class="pm-model">WCTS-11 Touch</div>
+              <div class="pm-specs">
+                <span>11 × GN 1/1</span>
+                <span>220V ou 380V tri.</span>
+                <span>~18,6 kW · 30–270°C</span>
+              </div>
+              <div class="pm-price"><a href="https://www.varimaq.com.br/coccao/fornoscombinado/forno-combinado-touch-screen-cavalete-e-gns-wcts-11e-wictory" target="_blank" style="color:var(--success);text-decoration:none">R$ 58.277 ↗</a></div>
+            </div>
+          </div>
+          <ul>
+            <li>14 funções de cocção (touch screen)</li>
+            <li>Câmara em aço inox AISI 304 nobre</li>
+            <li>Higienização automática com pastilha (opcional)</li>
+            <li>Até 1.000 receitas programáveis</li>
+            <li>40% economia de energia · 85% economia de água</li>
+            <li>Instalação com técnico + treinamento com chef incluídos</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag green">Fabricação Nacional</span>
+            <span class="tag">220V / 380V</span>
+            <span class="tag blue">1000 Receitas</span>
+            <span class="tag">Médio</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SOLIDUS -->
+      <div class="comp-card">
+        <div class="comp-header" style="background:#eafaf3">
+          <h3>Solidus Equipamentos</h3>
+          <span class="origin">🇧🇷 São José dos Campos/SP</span>
+        </div>
+        <div class="comp-body">
+          <p style="margin-bottom:10px">Fabricante nacional integrante do <strong>Grupo Marchesoni</strong>. Linha Qyros com forno combinado e painel touch ou digital. Foco em design compacto, interface intuitiva e alta performance para cozinhas de médio porte.</p>
+          <div class="prod-mini-grid">
+            <div class="prod-mini">
+              <div class="pm-model">Qyros 6GNs</div>
+              <div class="pm-specs">
+                <span>6 × GN 1/1</span>
+                <span>220V mono · tri · 380V tri</span>
+                <span>Vapor + convecção</span>
+              </div>
+              <div class="pm-price"><a href="https://www.mercadolivre.com.br/forno-combinado-89kw-6gns-250c-220v-trif-qyros-solidus/up/MLBU3298358054?matt_tool=18956390&utm_source=google_shopping&utm_medium=organic&pdp_filters=item_id%3AMLB5498248022&from=gshop" target="_blank" style="color:var(--success);text-decoration:none">R$ 32.090 ↗</a></div>
+            </div>
+            <div class="prod-mini">
+              <div class="pm-model">Qyros 10GNs</div>
+              <div class="pm-specs">
+                <span>10 × GN 1/1</span>
+                <span>220V mono · tri · 380V tri</span>
+                <span>Vapor + convecção</span>
+              </div>
+              <div class="pm-price"><a href="https://solidusequipamentos.com.br/qyros-10gns/" target="_blank" style="color:#888;text-decoration:none;font-size:0.8rem">Sob Consulta ↗</a></div>
+            </div>
+          </div>
+          <ul>
+            <li>Painel touch screen ou digital (opção de configuração)</li>
+            <li>Cozimento combinado: vapor + ar quente</li>
+            <li>Sistema de higienização automática integrado</li>
+            <li>Design compacto — máximo desempenho no menor espaço</li>
+            <li>Interface intuitiva para qualquer nível de operador</li>
+            <li>Suporte técnico nacional (Grupo Marchesoni)</li>
+          </ul>
+          <div class="tag-row">
+            <span class="tag green">Fabricação Nacional</span>
+            <span class="tag blue">Touch ou Digital</span>
+            <span class="tag">220V mono/tri · 380V tri</span>
+            <span class="tag">Entrada-Médio</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /comp-grid -->
+
+    <div class="warning-box" style="margin-top:24px">
+      <strong>⚠️ Nota competitiva:</strong> O mercado brasileiro apresenta barreiras relevantes para marcas importadas: certificação INMETRO, infraestrutura de assistência técnica local, disponibilidade de peças e adequação elétrica (220V/380V, 60Hz). Marcas com operação local (Prática, RATIONAL, UNOX, Wictory, Solidus) têm vantagem competitiva expressiva em suporte pós-venda.
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 3. COMPARATIVO DE PRODUTOS ===== -->
+<div class="section" id="produtos">
+  <div class="section-header">
+    <span class="icon">📦</span>
+    <h2>3. Comparativo de Produtos — 6 GN vs. 10 GN por Marca</h2>
+    <span class="badge">7 Marcas · 14 Modelos</span>
+  </div>
+  <div class="section-body">
+    <p>Comparativo direto dos principais modelos disponíveis no mercado brasileiro, nas configurações de 6 e 10 bandejas GN 1/1 — as mais demandadas pelo segmento food service:</p>
+
+    <div style="overflow-x:auto; margin-top:16px">
+    <table class="prod-table">
+      <thead>
+        <tr>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>GNs</th>
+          <th>Voltagem</th>
+          <th>Preço Aprox.</th>
+          <th>Interface</th>
+          <th>Higienização Auto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- BLIPS -->
+        <tr style="background:#fff5f0">
+          <td rowspan="2" style="font-weight:700; color:#e8501a; border-right:3px solid #e8501a">⭐ Blips</td>
+          <td>Vuze C6</td>
+          <td style="text-align:center">6</td>
+          <td><span class="volt-cell">380V 3φ</span></td>
+          <td class="price-cell">R$ 47.500</td>
+          <td>Touch 10.1" multitoque</td>
+          <td>✅ 3 níveis</td>
+        </tr>
+        <tr style="background:#fff5f0">
+          <td>Vuze C10</td>
+          <td style="text-align:center">10</td>
+          <td><span class="volt-cell">380V 3φ</span></td>
+          <td class="price-cell">R$ 58.616</td>
+          <td>Touch 10.1" multitoque</td>
+          <td>✅ 3 níveis</td>
+        </tr>
+        <!-- RATIONAL -->
+        <tr class="brand-row-a">
+          <td rowspan="2" style="font-weight:700; color:var(--primary); border-right:3px solid #e8501a">RATIONAL</td>
+          <td>iCombi Pro 6-1/1</td>
+          <td style="text-align:center">6</td>
+          <td><span class="volt-cell">220V 3φ · 380V 3φ</span></td>
+          <td class="price-cell">R$ 63.980</td>
+          <td>TFT Touch + IA</td>
+          <td>✅ iCareSystem</td>
+        </tr>
+        <tr class="brand-row-a">
+          <td>iCombi Pro 10-1/1</td>
+          <td style="text-align:center">10</td>
+          <td><span class="volt-cell">220V 3φ · 380V 3φ</span></td>
+          <td class="price-cell">R$ 89.592</td>
+          <td>TFT Touch + IA</td>
+          <td>✅ iCareSystem</td>
+        </tr>
+        <!-- PRATICA -->
+        <tr class="brand-row-b">
+          <td rowspan="2" style="font-weight:700; color:var(--primary); border-right:3px solid #1d8c5e">Prática</td>
+          <td>C-MAX EVO 6</td>
+          <td style="text-align:center">6</td>
+          <td><span class="volt-cell">220V 1φ · 220V 3φ · 380V 3φ · 440V 3φ</span></td>
+          <td class="price-cell">R$ 36.050</td>
+          <td>Touch Full</td>
+          <td>✅ Automática</td>
+        </tr>
+        <tr class="brand-row-b">
+          <td>TSi10</td>
+          <td style="text-align:center">10</td>
+          <td><span class="volt-cell">220V 3φ · 380V 3φ</span></td>
+          <td class="price-cell">R$ 73.836</td>
+          <td>Touch + IA Technicook</td>
+          <td>✅ Detecta sujidade</td>
+        </tr>
+        <!-- UNOX -->
+        <tr class="brand-row-a">
+          <td rowspan="2" style="font-weight:700; color:var(--primary); border-right:3px solid #2e7dc8">UNOX</td>
+          <td>CHEFTOP-X™ 6GN</td>
+          <td style="text-align:center">6</td>
+          <td><span class="volt-cell">220V 1φ · 220V 3φ · 380V 3φ</span></td>
+          <td class="price-cell">R$ 48.000</td>
+          <td>Digital.ID™ HD</td>
+          <td>✅ PRESSURE.Klean</td>
+        </tr>
+        <tr class="brand-row-a">
+          <td>CHEFTOP-X™ 10GN</td>
+          <td style="text-align:center">10</td>
+          <td><span class="volt-cell">220V 3φ · 380V 3φ</span></td>
+          <td class="price-cell">R$ 72.000</td>
+          <td>Digital.ID™ HD</td>
+          <td>✅ PRESSURE.Klean</td>
+        </tr>
+        <!-- WICTORY -->
+        <tr class="brand-row-a">
+          <td rowspan="2" style="font-weight:700; color:var(--primary); border-right:3px solid #1d8c5e">Wictory</td>
+          <td>WCTS-05</td>
+          <td style="text-align:center">5</td>
+          <td><span class="volt-cell">220V 3φ · 380V 3φ</span></td>
+          <td class="price-cell">R$ 20.000</td>
+          <td>Touch Screen</td>
+          <td>✅ Pastilha (opcional)</td>
+        </tr>
+        <tr class="brand-row-a">
+          <td>WCTS-11</td>
+          <td style="text-align:center">11</td>
+          <td><span class="volt-cell">220V 3φ · 380V 3φ</span></td>
+          <td class="price-cell">R$ 36.050</td>
+          <td>Touch Screen</td>
+          <td>✅ Pastilha (opcional)</td>
+        </tr>
+        <!-- SOLIDUS -->
+        <tr class="brand-row-b">
+          <td rowspan="2" style="font-weight:700; color:var(--primary); border-right:3px solid #1d8c5e">Solidus</td>
+          <td>Qyros 6GNs</td>
+          <td style="text-align:center">6</td>
+          <td><span class="volt-cell">220V 1φ · 220V 3φ · 380V 3φ</span></td>
+          <td class="price-cell">R$ 24.000</td>
+          <td>Touch ou Digital</td>
+          <td>✅ Automática</td>
+        </tr>
+        <tr class="brand-row-b">
+          <td>Qyros 10GNs</td>
+          <td style="text-align:center">10</td>
+          <td><span class="volt-cell">220V 1φ · 220V 3φ · 380V 3φ</span></td>
+          <td class="price-cell" style="color:#888">Sob Consulta</td>
+          <td>Touch ou Digital</td>
+          <td>✅ Automática</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr><td colspan="7">Preços consultados em distribuidores brasileiros (mai/2026). Preços Blips conforme tabela interna. Valores podem variar por configuração e canal de venda.</td></tr>
+      </tfoot>
+    </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 4. CLIENTES ===== -->
+<div class="section" id="clientes">
+  <div class="section-header">
+    <span class="icon">👥</span>
+    <h2>4. Principais Clientes e Segmentos de Mercado</h2>
+    <span class="badge">10 Segmentos</span>
+  </div>
+  <div class="section-body">
+    <p>O forno combinado elétrico atende a uma grande diversidade de operações de food service. Os segmentos a seguir representam os principais compradores e usuários no Brasil:</p>
+    <div class="segment-grid" style="margin-top:18px">
+      <div class="segment-card"><div class="seg-icon">🍽️</div><div><h4>Restaurantes e Bares</h4><p>Maior volume de unidades. Modelos de 5–10 GNs. Valorizam versatilidade, precisão e velocidade no preparo.</p></div></div>
+      <div class="segment-card"><div class="seg-icon">🏨</div><div><h4>Hotéis e Resorts</h4><p>Alta demanda por banquetes e café da manhã buffet. Preferem 10–20 GNs com conectividade e suporte 24h.</p></div></div>
+      <div class="segment-card"><div class="seg-icon">🏥</div><div><h4>Hospitais e Clínicas</h4><p>Exigem rigor HACCP/ANVISA. Higienização automática e rastreabilidade são obrigatórios. Modelos 10–20 GNs.</p></div></div>
+      <div class="segment-card"><div class="seg-icon">🏫</div><div><h4>Escolas e Creches</h4><p>Crescimento via PNAE. Buscam equipamentos econômicos, fáceis de operar e manutenção simplificada.</p></div></div>
+      <div class="segment-card"><div class="seg-icon">🏭</div><div><h4>Refeitórios Industriais</h4><p>Grandes volumes diários. Priorizam produtividade e custo por prato. Modelos 20–40 GNs.</p></div></div>
+      <div class="segment-card"><div class="seg-icon">🛵</div><div><h4>Dark Kitchens</h4><p>Crescimento exponencial pós-pandemia. Valorizam velocidade, compacidade e eficiência. 6–10 GNs.</p></div></div>
+      <div class="segment-card"><div class="seg-icon">🥐</div><div><h4>Padarias e Confeitarias</h4><p>Uso em panificação com injeção de vapor calibrada e perfis de temperatura programáveis.</p></div></div>
+      <div class="segment-card"><div class="seg-icon">🛒</div><div><h4>Supermercados (Rotisseria)</h4><p>Crescente uso em áreas de rotisseria in loco. Valorizam praticidade e higiene.</p></div></div>
+      <div class="segment-card"><div class="seg-icon">🎪</div><div><h4>Catering e Eventos</h4><p>Regeneração rápida de grandes volumes. Fornos 20–40 GNs com sistemas cook & chill.</p></div></div>
+      <div class="segment-card"><div class="seg-icon">✈️</div><div><h4>Cozinhas Aéreas e Navais</h4><p>Versões certificadas para uso em navios e aeronaves. Alta robustez e conformidade especial.</p></div></div>
+    </div>
+    <div class="highlight-box" style="margin-top:24px">
+      <strong>🎯 Perfil do Decisor de Compra:</strong> Em operações de pequeno/médio porte, a decisão é do proprietário ou chef executivo. Em redes, hospitais e refeitórios corporativos, envolve gestores de compras, engenharia de alimentos e nutricionistas. O critério de <em>TCO — Total Cost of Ownership</em> (energia, água, manutenção e vida útil) é decisivo na comparação entre marcas premium e intermediárias.
+    </div>
+  </div>
+</div>
+
+<!-- ===== 5. PESQUISA DE CAMPO ===== -->
+<div class="section" id="campo">
+  <div class="section-header">
+    <span class="icon">🔍</span>
+    <h2>5. Pesquisa de Campo — Infraestrutura Elétrica dos Estabelecimentos</h2>
+    <span class="badge">13 Estabelecimentos · Pesquisa Primária</span>
+  </div>
+  <div class="section-body">
+    <p>Levantamento direto realizado junto a restaurantes e estabelecimentos food service locais com o objetivo de mapear a realidade elétrica do mercado — fator crítico para a viabilidade de instalação de fornos combinados elétricos.</p>
+
+    <!-- Grid de estabelecimentos -->
+    <h3 style="font-size:1rem; font-weight:700; color:var(--primary); margin:24px 0 14px">Dados Coletados por Estabelecimento</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:10px; margin-bottom:28px">
+
+      <div style="background:#f8faff; border:1px solid #dde5f5; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Verdim</div>
+        <div style="font-size:0.82rem; color:#555">⚡ 220V · Bifásico</div>
+      </div>
+
+      <div style="background:#f8faff; border:1px solid #dde5f5; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Kanpai</div>
+        <div style="font-size:0.82rem; color:#555">⚡ 220V · Trifásico</div>
+      </div>
+
+      <div style="background:#f8faff; border:1px solid #dde5f5; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Banana da Terra</div>
+        <div style="font-size:0.82rem; color:#555">⚡ 220V · Bifásico</div>
+      </div>
+
+      <div style="background:#f8faff; border:1px solid #dde5f5; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Dona Joana</div>
+        <div style="font-size:0.82rem; color:#555">⚡ 220V · Trifásico</div>
+      </div>
+
+      <div style="background:#fff8ee; border:1px solid #f0deb0; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Fino Sabor</div>
+        <div style="font-size:0.82rem; color:#888">⚡ 220V · Fase não informada</div>
+      </div>
+
+      <div style="background:#fff8ee; border:1px solid #f0deb0; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Santa Maria</div>
+        <div style="font-size:0.82rem; color:#888">⚡ 220V · Fase não informada</div>
+      </div>
+
+      <div style="background:#f2f9f2; border:1px solid #b8ddb8; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Terra Brasílis</div>
+        <div style="font-size:0.82rem; color:#4a8a4a">🔥 Totalmente a gás</div>
+      </div>
+
+      <div style="background:#fff8ee; border:1px solid #f0deb0; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Tunicos</div>
+        <div style="font-size:0.82rem; color:#888">⚡ 220V · Fase não informada</div>
+      </div>
+
+      <div style="background:#f8faff; border:1px solid #dde5f5; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Ateliê do Sabor</div>
+        <div style="font-size:0.82rem; color:#555">⚡ 220V · Trifásico</div>
+      </div>
+
+      <div style="background:#f8faff; border:1px solid #dde5f5; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Marmita e Cia</div>
+        <div style="font-size:0.82rem; color:#555">⚡ 220V · Bifásico</div>
+      </div>
+
+      <div style="background:#fff0f0; border:1px solid #f0c8c8; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Feito em Casa</div>
+        <div style="font-size:0.82rem; color:#b84040">⚡ 110V · Bifásico</div>
+      </div>
+
+      <div style="background:#fff8ee; border:1px solid #f0deb0; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Recanto do Parcero</div>
+        <div style="font-size:0.82rem; color:#888">⚡ 220V · Fase não informada</div>
+      </div>
+
+      <div style="background:#fff8ee; border:1px solid #f0deb0; border-radius:8px; padding:12px 14px">
+        <div style="font-weight:700; font-size:0.88rem; color:var(--primary); margin-bottom:4px">Glória</div>
+        <div style="font-size:0.82rem; color:#888">⚡ 220V · Fase não informada</div>
+      </div>
+
+    </div>
+
+    <!-- Síntese quantitativa -->
+    <h3 style="font-size:1rem; font-weight:700; color:var(--primary); margin:0 0 14px">Síntese Quantitativa</h3>
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:12px; margin-bottom:28px">
+      <div style="background:#eef4ff; border:2px solid #aac8f0; border-radius:8px; padding:14px; text-align:center">
+        <div style="font-size:2rem; font-weight:800; color:var(--primary)">13</div>
+        <div style="font-size:0.78rem; color:#555; margin-top:2px">Estabelecimentos pesquisados</div>
+      </div>
+      <div style="background:#e8f9ef; border:2px solid #88d4a8; border-radius:8px; padding:14px; text-align:center">
+        <div style="font-size:2rem; font-weight:800; color:#1a7a42">12</div>
+        <div style="font-size:0.78rem; color:#555; margin-top:2px">Usam energia elétrica</div>
+      </div>
+      <div style="background:#fff3e0; border:2px solid #f0b840; border-radius:8px; padding:14px; text-align:center">
+        <div style="font-size:2rem; font-weight:800; color:#a06000">11</div>
+        <div style="font-size:0.78rem; color:#555; margin-top:2px">Operam em 220V</div>
+      </div>
+      <div style="background:#ffeaea; border:2px solid #f09090; border-radius:8px; padding:14px; text-align:center">
+        <div style="font-size:2rem; font-weight:800; color:#b03030">0</div>
+        <div style="font-size:0.78rem; color:#555; margin-top:2px">Operam em 380V</div>
+      </div>
+    </div>
+
+    <!-- Breakdown de fases -->
+    <h3 style="font-size:1rem; font-weight:700; color:var(--primary); margin:0 0 14px">Distribuição por Configuração Elétrica</h3>
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:12px; margin-bottom:28px">
+
+      <div style="background:#fff; border:1px solid #dde5f5; border-radius:8px; padding:14px">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
+          <div style="width:12px; height:12px; border-radius:50%; background:#e8501a; flex-shrink:0"></div>
+          <span style="font-weight:700; font-size:0.85rem">220V Bifásico</span>
+        </div>
+        <div style="font-size:1.6rem; font-weight:800; color:#e8501a">3</div>
+        <div style="font-size:0.75rem; color:#777; margin-top:2px">Verdim, Banana da Terra, Marmita e Cia</div>
+      </div>
+
+      <div style="background:#fff; border:1px solid #dde5f5; border-radius:8px; padding:14px">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
+          <div style="width:12px; height:12px; border-radius:50%; background:#1a6eb4; flex-shrink:0"></div>
+          <span style="font-weight:700; font-size:0.85rem">220V Trifásico</span>
+        </div>
+        <div style="font-size:1.6rem; font-weight:800; color:#1a6eb4">3</div>
+        <div style="font-size:0.75rem; color:#777; margin-top:2px">Kanpai, Dona Joana, Ateliê do Sabor</div>
+      </div>
+
+      <div style="background:#fff; border:1px solid #dde5f5; border-radius:8px; padding:14px">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
+          <div style="width:12px; height:12px; border-radius:50%; background:#a0a0a0; flex-shrink:0"></div>
+          <span style="font-weight:700; font-size:0.85rem">220V (fase desconhecida)</span>
+        </div>
+        <div style="font-size:1.6rem; font-weight:800; color:#666">5</div>
+        <div style="font-size:0.75rem; color:#777; margin-top:2px">Fino Sabor, Santa Maria, Tunicos, Recanto do Parcero, Glória</div>
+      </div>
+
+      <div style="background:#fff; border:1px solid #dde5f5; border-radius:8px; padding:14px">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
+          <div style="width:12px; height:12px; border-radius:50%; background:#b84040; flex-shrink:0"></div>
+          <span style="font-weight:700; font-size:0.85rem">110V Bifásico</span>
+        </div>
+        <div style="font-size:1.6rem; font-weight:800; color:#b84040">1</div>
+        <div style="font-size:0.75rem; color:#777; margin-top:2px">Feito em Casa</div>
+      </div>
+
+      <div style="background:#fff; border:1px solid #dde5f5; border-radius:8px; padding:14px">
+        <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px">
+          <div style="width:12px; height:12px; border-radius:50%; background:#4a8a4a; flex-shrink:0"></div>
+          <span style="font-weight:700; font-size:0.85rem">Somente a gás</span>
+        </div>
+        <div style="font-size:1.6rem; font-weight:800; color:#4a8a4a">1</div>
+        <div style="font-size:0.75rem; color:#777; margin-top:2px">Terra Brasílis</div>
+      </div>
+
+    </div>
+
+    <!-- Análise e implicações -->
+    <h3 style="font-size:1rem; font-weight:700; color:var(--primary); margin:0 0 14px">Análise e Implicações Estratégicas</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:20px">
+
+      <div style="background:#fff8e6; border-left:4px solid #f0b840; border-radius:0 8px 8px 0; padding:14px 16px">
+        <div style="font-weight:700; font-size:0.88rem; color:#7a5000; margin-bottom:6px">⚠️ Nenhum estabelecimento opera em 380V</div>
+        <p style="font-size:0.82rem; color:#555; margin:0; line-height:1.5">O forno Blips opera em 380V trifásico — a tensão <strong>não encontrada em nenhum</strong> dos 13 estabelecimentos pesquisados. Isso significa que todos os clientes em potencial precisariam realizar <strong>adequação elétrica</strong> antes da instalação, o que adiciona custo e fricção no processo de venda.</p>
+      </div>
+
+      <div style="background:#eef4ff; border-left:4px solid #5588cc; border-radius:0 8px 8px 0; padding:14px 16px">
+        <div style="font-weight:700; font-size:0.88rem; color:#2a4a7a; margin-bottom:6px">📊 220V Trifásico: o perfil mais compatível hoje</div>
+        <p style="font-size:0.82rem; color:#555; margin:0; line-height:1.5">Apenas 3 estabelecimentos (23%) possuem 220V trifásico — o único perfil que permite instalar fornos combinados premium sem adaptação de rede. Concorrentes como RATIONAL, Prática e UNOX que oferecem versão 220V trifásico têm <strong>vantagem direta</strong> de instalação sobre o Blips neste mercado.</p>
+      </div>
+
+      <div style="background:#f0f9f4; border-left:4px solid #44aa77; border-radius:0 8px 8px 0; padding:14px 16px">
+        <div style="font-weight:700; font-size:0.88rem; color:#1a6040; margin-bottom:6px">💡 Os "não sabe" provavelmente são bifásicos</div>
+        <p style="font-size:0.82rem; color:#555; margin:0; line-height:1.5">Os 5 estabelecimentos que informaram 220V sem saber a fase são, muito provavelmente, bifásicos — padrão mais comum em estabelecimentos comerciais de pequeno e médio porte no Brasil. Se confirmado, o perfil bifásico abrangeria 8 de 12 estabelecimentos elétricos (67%), sinalizando um mercado majoritariamente com infraestrutura elétrica limitada.</p>
+      </div>
+
+      <div style="background:#fdf0f0; border-left:4px solid #cc4444; border-radius:0 8px 8px 0; padding:14px 16px">
+        <div style="font-weight:700; font-size:0.88rem; color:#7a2020; margin-bottom:6px">🔌 110V: caso isolado e crítico</div>
+        <p style="font-size:0.82rem; color:#555; margin:0; line-height:1.5">O estabelecimento "Feito em Casa" opera em 110V bifásico — incompatível com qualquer forno combinado elétrico de porte disponível no mercado. Representa um cliente fora do escopo do produto sem investimento significativo em infraestrutura.</p>
+      </div>
+
+    </div>
+
+    <div style="background:#1a2e4a; color:#fff; border-radius:8px; padding:18px 22px; margin-top:4px">
+      <div style="font-weight:800; font-size:0.9rem; margin-bottom:8px; color:#e8c060">🎯 Conclusão da Pesquisa de Campo</div>
+      <p style="font-size:0.83rem; line-height:1.6; margin:0; color:#dde8f5">
+        A pesquisa revela que <strong>a infraestrutura elétrica é uma barreira real de adoção</strong> para o produto Blips neste mercado. Com 100% dos estabelecimentos pesquisados abaixo de 380V, a estratégia de venda deve incluir obrigatoriamente o suporte à <strong>adequação elétrica</strong> (levantamento prévio, indicação de eletricista, custo estimado de adaptação). Alternativamente, o desenvolvimento de uma versão 220V trifásico do produto eliminaria este gargalo e ampliaria significativamente o mercado endereçável. Os 3 estabelecimentos com 220V trifásico confirmado representam o <strong>perfil de cliente ideal imediato</strong> — prontos para instalação sem fricção adicional.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 5. CERTIFICAÇÕES ===== -->
+<div class="section" id="certificacoes">
+  <div class="section-header">
+    <span class="icon">📋</span>
+    <h2>6. Certificações e Requisitos Regulatórios para Comercialização no Brasil</h2>
+    <span class="badge">Obrigatório</span>
+  </div>
+  <div class="section-body">
+    <p>Para que um forno combinado elétrico possa ser <strong>fabricado, importado e comercializado legalmente no Brasil</strong>, são exigidas aprovações por órgãos reguladores específicos:</p>
+    <div class="cert-grid" style="margin-top:20px">
+      <div class="cert-card">
+        <div class="cert-card-header" style="background:#1a2e4a">🏛️ INMETRO — Portaria nº 148/2022</div>
+        <div class="cert-card-body">
+          <p style="margin-bottom:10px"><strong>Principal certificação obrigatória</strong> para aparelhos eletrodomésticos e similares no Brasil. Vigente desde 02/05/2022, substituindo a Portaria 371/2009.</p>
+          <ul>
+            <li>Avalia segurança elétrica, mecânica, térmica e de radiação</li>
+            <li>Base normativa: <strong>ABNT NBR NM 60335-1 + IEC 60335-2-9</strong> (fornos)</li>
+            <li>Após 31/12/2025: obrigatório IEC 60335-1:2016 Ed. 5.2</li>
+            <li>Certificação por OCP credenciado (TÜV, SGS, ABCP, etc.)</li>
+            <li>Inclui auditoria de fábrica + ensaios laboratoriais</li>
+          </ul>
+          <p style="margin-top:10px; font-size:0.8rem; color:var(--warning)">⚠️ Para grandes equipamentos industriais (20-2/1+), a certificação pode ser não compulsória.</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-card-header" style="background:#1a5fa0">⚡ ABNT NBR / IEC 60335</div>
+        <div class="cert-card-body">
+          <ul>
+            <li><strong>ABNT NBR NM 60335-1:2010</strong> — Segurança geral de eletrodomésticos</li>
+            <li><strong>IEC 60335-2-9</strong> — Fornos de uso culinário</li>
+            <li><strong>IEC 60335-2-36</strong> — Fornos comerciais aquecidos eletricamente</li>
+            <li>Tensão máxima: até 480V para trifásicos</li>
+            <li>Após jan/2026: IEC 60335-1:2016 Ed. 5.2 obrigatório</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-card-header" style="background:#1d8c5e">🦠 ANVISA / HACCP</div>
+        <div class="cert-card-body">
+          <ul>
+            <li>Câmara e superfícies em <strong>aço inox AISI 304 ou 316</strong></li>
+            <li>Saída de condensado mínima: <strong>DN50</strong></li>
+            <li>Registros de temperatura e tempo (rastreabilidade HACCP)</li>
+            <li>Resolução RDC ANVISA nº 216/2004</li>
+            <li>Sistema de higienização aprovado para uso em alimentos</li>
+          </ul>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-card-header" style="background:#3a7a5c">🌱 Certificações Voluntárias</div>
+        <div class="cert-card-body">
+          <ul>
+            <li><strong>ENERGY STAR®</strong> — Eficiência energética (UNOX CHEFTOP-X™)</li>
+
+            <li><strong>ISO 9001</strong> — Gestão de Qualidade do fabricante</li>
+            <li><strong>ISO 14001</strong> — Gestão Ambiental</li>
+            <li><strong>CE Marking</strong> — Conformidade europeia</li>
+          </ul>
+          <p style="margin-top:8px; font-size:0.8rem; color:var(--muted)">Diferenciais relevantes em licitações públicas e contratos com grandes redes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 6. CARACTERÍSTICAS ===== -->
+<div class="section" id="features">
+  <div class="section-header">
+    <span class="icon">⚙️</span>
+    <h2>7. Características Técnicas Relevantes na Decisão de Compra</h2>
+    <span class="badge">12 Fatores-chave</span>
+  </div>
+  <div class="section-body">
+    <p>As características a seguir são as mais avaliadas pelos compradores profissionais de fornos combinados elétricos no Brasil:</p>
+    <div class="feature-grid" style="margin-top:20px">
+      <div class="feature-card"><div class="feat-icon">📐</div><h4>Capacidade (Número de GNs)</h4><p>Define diretamente o volume de produção. Padrão GN 1/1 (530×325mm). 6 GNs: 40–80 ref/dia. 10 GNs: 80–150 ref/dia. 20 GNs: 200–400 ref/dia.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-label">Crítico</span></div></div>
+      <div class="feature-card"><div class="feat-icon">🌡️</div><h4>Faixa de Temperatura e Controle de Umidade</h4><p>Faixa típica: 30°C a 300°C. Umidade: 0–100%. Permite vapor, ar quente seco, combinado e sous-vide. Precisão de ±1°C é diferencial premium.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:98%"></div></div><span class="bar-label">Crítico</span></div></div>
+      <div class="feature-card"><div class="feat-icon">🤖</div><h4>Interface e Automação de Receitas</h4><p>Touch screen com acervo de receitas programáveis. IA culinária ajusta automaticamente tempo, temperatura e umidade, garantindo padronização independente do operador.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><span class="bar-label">Muito Alto</span></div></div>
+      <div class="feature-card"><div class="feat-icon">🧼</div><h4>Sistema de Higienização Automática</h4><p>Essencial para atender HACCP/ANVISA. Detecta sujidade e executa limpeza automaticamente. Pastilhas desengordurantes e descalcificantes. Reduz risco de contaminação cruzada.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div><span class="bar-label">Muito Alto</span></div></div>
+      <div class="feature-card"><div class="feat-icon">🔌</div><h4>Eficiência Energética</h4><p>Consumo típico: 15–22 kW (10 GNs). Vidro duplo/triplo na porta, isolamento melhorado e gestão inteligente reduzem custos em até 25–70% vs. métodos convencionais.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:92%"></div></div><span class="bar-label">Muito Alto</span></div></div>
+      <div class="feature-card"><div class="feat-icon">🌐</div><h4>Conectividade e Gestão Remota (IoT)</h4><p>Monitoramento via app, relatórios HACCP automáticos, alertas de falha, suporte técnico remoto. Crescente exigência em redes multi-site.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div><span class="bar-label">Alto</span></div></div>
+      <div class="feature-card"><div class="feat-icon">🍖</div><h4>Sonda de Temperatura de Núcleo</h4><p>Mede temperatura interna do alimento em tempo real, garantindo o ponto exato de cocção. Fundamental para carnes e processos de cocção noturna.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:83%"></div></div><span class="bar-label">Alto</span></div></div>
+      <div class="feature-card"><div class="feat-icon">💧</div><h4>Sistema de Geração de Vapor</h4><p>Caldeira (uniforme) vs. injeção direta (econômica). A qualidade do vapor afeta textura e rendimento. Filtros de água são essenciais para proteger o sistema.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><span class="bar-label">Alto</span></div></div>
+      <div class="feature-card"><div class="feat-icon">🏗️</div><h4>Construção em Aço Inox e Durabilidade</h4><p>Câmara em AISI 304 (mín.) ou 316L (premium). Vidro duplo ou triplo. Sem cantos vivos facilita higienização. Vida útil esperada: 10–15 anos.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><span class="bar-label">Alto</span></div></div>
+      <div class="feature-card"><div class="feat-icon">🔧</div><h4>Assistência Técnica e Peças</h4><p>Fator crítico no Brasil: rede de técnicos autorizados, estoque de peças local e tempo de resposta. Marcas com operação local têm vantagem decisiva. Downtime é custo direto.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:93%"></div></div><span class="bar-label">Muito Alto</span></div></div>
+      <div class="feature-card"><div class="feat-icon">📜</div><h4>Certificação INMETRO e Conformidade Legal</h4><p>Obrigatória para modelos compulsórios. Sem o selo INMETRO, o produto não pode ser comercializado ou exposto em feiras. Pré-requisito em licitações públicas.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div><span class="bar-label">Muito Alto</span></div></div>
+      <div class="feature-card"><div class="feat-icon">🎛️</div><h4>Multifuncionalidade</h4><p>Assar, vapor, grelhar, gratinar, fritar (AirFry), defumar, regenerar, fermentar e sous-vide em um único equipamento. Substitui até 90% dos equipamentos da cozinha.</p><div class="importance-bar"><div class="bar-track"><div class="bar-fill" style="width:97%"></div></div><span class="bar-label">Crítico</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 7. CONCLUSÕES ===== -->
+<div class="section" id="conclusoes">
+  <div class="section-header">
+    <span class="icon">🎯</span>
+    <h2>8. Conclusões e Análise Estratégica</h2>
+    <span class="badge">Blips · Mercado · Decisão</span>
+  </div>
+  <div class="section-body">
+
+    <p>A Blips apresenta um posicionamento de preço <strong>distinto entre seus dois modelos</strong>, o que exige estratégias de venda diferentes para cada um. O <strong>Vuze C6 (R$ 47.500)</strong> é o mais caro entre as marcas nacionais na faixa de 6 bandejas — fica acima de Solidus (R$ 32.090), Wictory WCTS-05 (R$ 35.557) e Prática C-MAX EVO 6 (R$ 36.050), e só perde para UNOX (R$ 61.990) e RATIONAL (R$ 63.980). Isso significa que a venda do C6 precisa ser justificada por diferencial técnico claro: interface superior, mais funções, maior durabilidade — para o cliente não simplesmente optar por um concorrente nacional mais barato. Já o <strong>Vuze C10 (R$ 58.616)</strong> opera em posição muito competitiva: está praticamente empatado com o Wictory WCTS-11 (R$ 58.277, diferença de apenas R$ 339), e fica muito abaixo de Prática TSi10 (R$ 73.836), RATIONAL iCombi Pro (R$ 89.592) e UNOX CHEFTOP-X (R$ 89.950). Aqui a Blips une especificação completa a um preço de entrada acessível frente às líderes globais.</p>
+
+    <div class="highlight-box">
+      <strong>🏆 Posicionamento por modelo:</strong> O <strong>C10 é o produto de ataque</strong> — preço competitivo (praticamente igual ao Wictory) com especificação superior: tela 10.1", 1.000+ receitas, limpeza automática em 3 níveis e aço SUS304, ideal para disputar clientes de Prática, UNOX e RATIONAL. O <strong>C6 exige venda consultiva</strong> — custa mais que os concorrentes nacionais diretos, portanto o argumento deve focar nos diferenciais técnicos (tela touch full, fermentação, regeneração, SUS304) frente a produtos mais simples da mesma faixa de preço.
+    </div>
+
+    <div class="warning-box" style="margin-top:16px">
+      <strong>⚠️ Principal desafio a superar — Barreira Elétrica (380V Trifásico):</strong> Os equipamentos Vuze C6 e C10 operam exclusivamente em <strong>380V trifásico</strong>, enquanto a grande maioria dos estabelecimentos de food service no Brasil — especialmente pequenos e médios restaurantes, dark kitchens, padarias e estabelecimentos de rua — possui infraestrutura monofásica 220V ou trifásica 220V. A instalação exige um quadro elétrico dedicado com circuito trifásico 380V, o que implica obra elétrica, custo adicional e, em muitos casos, negociação com a concessionária de energia para adequação da entrada. Isso estreita significativamente o mercado endereçável imediato: segmentos como cozinhas industriais, refeitórios corporativos, hotéis e cozinhas centrais em geral já dispõem de 380V 3φ — mas o segmento de restaurantes independentes e pequenas operações pode ser inviável sem suporte técnico para adequação elétrica. Mapear o perfil elétrico do cliente antes da proposta comercial é etapa obrigatória no processo de vendas.
+    </div>
+
+    <hr class="divider">
+    <h3 class="sub-title">Principais Características a Analisar na Decisão de Compra</h3>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:16px; margin-top:8px">
+
+      <div style="background:#f4f6f9; border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:6px; padding:14px 16px">
+        <div style="font-weight:700; color:var(--accent); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px">🔴 Crítico — Verificar antes de qualquer negociação</div>
+        <ul style="padding-left:16px; font-size:0.84rem; color:var(--text)">
+          <li style="margin-bottom:5px"><strong>Certificação INMETRO:</strong> Obrigatória para comercialização legal no Brasil (Portaria 148/2022)</li>
+          <li style="margin-bottom:5px"><strong>Assistência técnica local:</strong> Tempo de resposta, disponibilidade de peças e cobertura geográfica</li>
+        </ul>
+      </div>
+
+      <div style="background:#f4f6f9; border:1px solid var(--border); border-left:4px solid var(--accent2); border-radius:6px; padding:14px 16px">
+        <div style="font-weight:700; color:var(--accent2); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px">🔵 Muito Relevante — Impacto direto no dia a dia</div>
+        <ul style="padding-left:16px; font-size:0.84rem; color:var(--text)">
+          <li style="margin-bottom:5px"><strong>Interface e banco de receitas:</strong> Tela touch com receitas programáveis reduz dependência de chef e garante padronização</li>
+          <li style="margin-bottom:5px"><strong>Sistema de higienização automática:</strong> Essencial para conformidade HACCP/ANVISA e redução de mão de obra</li>
+          <li style="margin-bottom:5px"><strong>Qualidade do aço inox:</strong> SUS304 / AISI 304 é o mínimo aceitável para câmara e estrutura interna</li>
+          <li style="margin-bottom:5px"><strong>Potência e eficiência:</strong> 18 kW para 6–10 GNs é adequado; avaliar consumo em relação ao volume de produção</li>
+        </ul>
+      </div>
+
+      <div style="background:#f4f6f9; border:1px solid var(--border); border-left:4px solid var(--success); border-radius:6px; padding:14px 16px">
+        <div style="font-weight:700; color:var(--success); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px">🟢 Diferencial — Agrega valor na venda</div>
+        <ul style="padding-left:16px; font-size:0.84rem; color:var(--text)">
+          <li style="margin-bottom:5px"><strong>Funções extras:</strong> Fermentação e regeneração ampliam os casos de uso (padarias, catering, dark kitchens)</li>
+          <li style="margin-bottom:5px"><strong>Segurança da porta:</strong> Vidro duplo e abertura em 2 estágios — relevante para cozinhas com operadores menos experientes</li>
+          <li style="margin-bottom:5px"><strong>Potencial IoT (Neuronizável):</strong> Conectividade e gestão remota são tendência crescente, especialmente em redes multi-unidade</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="divider">
+    <h3 class="sub-title">Como o Mercado se Comporta nessas Características</h3>
+
+    <p>O mercado brasileiro de food service profissional está em transição: <strong>o cliente de entrada compra por preço</strong>, mas o cliente de médio e alto porte está cada vez mais orientado ao <strong>TCO — Custo Total de Propriedade</strong>, calculando eficiência energética, vida útil, custo de manutenção e ganho de produtividade ao longo do tempo.</p>
+
+    <div class="highlight-box">
+      <strong>📊 Dados relevantes do mercado:</strong><br>
+      • Mais de <strong>70%</strong> dos compradores profissionais listam assistência técnica local como critério decisivo — acima do preço inicial<br>
+      • A faixa de <strong>R$ 30k–60k</strong> concentra a maior disputa no segmento de 6GN: Solidus (R$ 32k), Wictory (R$ 35k), Prática (R$ 36k) e Blips Vuze C6 (R$ 47,5k) disputam o mesmo cliente — porém com propostas de valor distintas<br>
+      • Higienização automática deixou de ser diferencial e tornou-se <strong>requisito mínimo</strong> esperado em equipamentos acima de R$ 25k<br>
+      • Touch screen com receitas programáveis é o item mais citado em pesquisas de satisfação como <strong>fator de retenção</strong> (operador menos dependente de chef treinado)<br>
+      • Conectividade IoT ainda é nicho, mas cresce 30%+ ao ano em adoção por redes de fast food e dark kitchens
+    </div>
+
+    <p>Para a Blips, o <strong>caminho mais rápido ao mercado</strong> passa por: (1) <strong>qualificar eletricamente o cliente antes de avançar na negociação</strong> — identificar se o estabelecimento já tem 380V trifásico disponível ou qual o custo de adequação; (2) concentrar o C10 em segmentos que naturalmente operam em 380V 3φ (hotéis, refeitórios corporativos, cozinhas centrais, redes de restaurantes); (3) adotar abordagem consultiva no C6, demonstrando por que vale R$ 11k–15k a mais que Prática ou Wictory — tela touch 10.1", mais de 1.000 receitas, fermentação, regeneração e aço SUS304. <strong>Para o Vuze C10</strong>, o argumento é eficiente: preço praticamente idêntico ao Wictory WCTS-11, porém com especificação técnica superior e recursos premium que nos concorrentes diretos só aparecem em modelos mais caros.</p>
+
+  </div>
+</div>
+
+<!-- FONTES -->
+<div class="section" id="fontes" style="margin-bottom:0; border-radius:8px 8px 0 0">
+  <div class="section-header" style="background:#3a4a5e">
+    <span class="icon">🔗</span>
+    <h2>9. Fontes e Referências</h2>
+  </div>
+</div>
+<div class="sources">
+  <h3>Fontes Consultadas</h3>
+  <ul>
+    <li><a href="https://www.rational-online.com/pt_br/icombi-pro/modelos/result/?products=1" target="_blank">RATIONAL — iCombi Pro Modelos e Especificações Técnicas (Brasil)</a></li>
+    <li><a href="https://www.rational-online.com/pt_br/news/pt_br/20230123-sales-record.php" target="_blank">RATIONAL AG — Faturamento recorde de €1 bilhão (2023)</a></li>
+    <li><a href="https://www.praticabr.com/fornos-combinados" target="_blank">Prática — Linha completa de Fornos Combinados</a></li>
+    <li><a href="https://www.moneyreport.com.br/negocios/exame-eles-faturam-r-400-milhoes-com-fornos-para-restaurantes/" target="_blank">Money Report / Exame — Prática fatura R$400 mi com fornos (2025)</a></li>
+    <li><a href="https://www.unox.com/pt_br/linhas/cheftop-x/" target="_blank">UNOX — CHEFTOP-X™: especificações e diferenciais tecnológicos (Brasil)</a></li>
+
+    <li><a href="https://wictory.com.br/produtos/profissional/fornos-combinados" target="_blank">Wictory — Portfólio Fornos Combinados</a></li>
+    <li><a href="https://solidusequipamentos.com.br/qyros-6gns/" target="_blank">Solidus Equipamentos — Qyros 6GNs</a></li>
+    <li><a href="https://solidusequipamentos.com.br/qyros-10gns/" target="_blank">Solidus Equipamentos — Qyros 10GNs</a></li>
+    <li><a href="https://www.grandviewresearch.com/industry-analysis/combi-ovens-market-report" target="_blank">Grand View Research — Combi Ovens Market Size & Trends to 2030</a></li>
+    <li><a href="https://ditullio.com.br/?p=1067" target="_blank">Grupo Di Tullio — Consumo de food service Brasil 2025</a></li>
+    <li><a href="https://redefoodservice.com.br/2025/01/a-cozinha-de-2025-especialistas-do-ramo-food-service-revelam-quais-sao-as-principais-tendencias/" target="_blank">Rede Food Service — Tendências da cozinha profissional 2025</a></li>
+    <li><a href="https://www.entran.com.br/certificacao-de-eletrodomesticos-segundo-a-portaria-inmetro-371/" target="_blank">Entran — Certificação de eletrodomésticos: Portaria INMETRO 148/2022</a></li>
+    <li><a href="https://www.gov.br/inmetro/pt-br/acesso-a-informacao/perguntas-frequentes/avaliacao-da-conformidade/aparelhos-eletrodomesticos-e-similares/qual-versao-da-base-normativa-da-portaria-inmetro-ndeg-148-de-2022-pode-ser-utilizada-na-certificacao" target="_blank">INMETRO.gov.br — Portaria 148/2022: base normativa e FAQ oficial</a></li>
+  </ul>
+  <p style="margin-top:12px; font-style:italic">Pesquisa realizada em maio de 2026. Preços consultados em distribuidores e marketplaces brasileiros (mai/2026). Recomenda-se validação direta com fabricantes e distribuidores para confirmação.</p>
+</div>
+
+<div class="doc-footer">
+  <strong>Inteligência de Mercado — Forno Combinado Elétrico Profissional no Brasil</strong> &nbsp;|&nbsp;
+  Elaborado com base em fontes públicas e dados oficiais dos fabricantes &nbsp;|&nbsp;
+  Maio / 2026
+</div>
+
+</body>
+</html>
